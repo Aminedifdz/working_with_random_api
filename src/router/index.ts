@@ -3,30 +3,20 @@ import { Home, Contact} from '../pages'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    /*component: function () {
-      return import('../pages')
-    }*/
-    component: Home,
+      path: '/',
+      name: 'Home',
+      component: Home
   },
   {
-    path: '/contact/:id',
-    name: 'Contact',
-    /*component: function () {
-      return import('../pages')
-    }*/
-    component: Contact,
-    params: true,
-    props : route => ({ query: route.query })
+      path: '/contact/:id',
+      name: 'Contact.details',
+      props: true,
+      component: Contact
   }
 ]
 
 const router = createRouter({
-  mode: history,
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

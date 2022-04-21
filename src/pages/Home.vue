@@ -1,70 +1,71 @@
 <template>
-        <v-col>
-            <v-spacer></v-spacer>
-        </v-col>
-        <transition
-            appear
-            @before-enter="beforeEnterSearchField"
-            @enter="enterSearchField"
-            :css="false"
-        >
-            <v-container
-                class="grey spacing-playground mb-25 pa-6"
-                >
-                <v-row>
-                    <v-col
-                        cols="12"
-                        sm="6"
-                        >
-                        <div v-if="isFetching">
-                            <v-progress-circular
-                                indeterminate
-                                color="black"
-                            ></v-progress-circular>
-                        </div>
-                        <div v-else>
-                            <h1 >{{ usersContacts.length }} Contact(s)</h1>
-                        </div>
-                    </v-col>
-                    
-                    <v-col
-                        cols="12"
-                        sm="6"
-                        >
-                        <v-text-field
-                            label="Search"
-                            v-model="search"
-                            outlined
-                            clearable
-                        ></v-text-field>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </transition>
-        <transition 
-                appear
-                @before-enter="beforeEnter"
-                @enter="enter"
-        >
-            <v-container
-                
-                class="grey spacing-playground mb-6 pa-6 app__flex"
+    <v-col>
+        <v-spacer></v-spacer>
+    </v-col>
+    <transition
+        appear
+        @before-enter="beforeEnterSearchField"
+        @enter="enterSearchField"
+        :css="false"
+    >
+        <v-container
+            class="grey spacing-playground mb-25 pa-6"
             >
-            
-                <div
-                    class="app__flex" 
-                >
-                    <div
-                        v-for="(contact, index) in usersContacts"
-                        :key="contact.userId"
-                        class="display-flex__child"
+            <v-row>
+                <v-col
+                    cols="12"
+                    sm="6"
                     >
-                        <Card :to="{name: 'Contact', params: { id: contact.id } }" :contact="contact" />
+                    <div v-if="isFetching">
+                        <v-progress-circular
+                            indeterminate
+                            color="black"
+                        ></v-progress-circular>
                     </div>
-                </div>                        
-            </v-container>
-        </transition> 
-  </template>
+                    <div v-else>
+                        <h1 >{{ usersContacts.length }} Contact(s)</h1>
+                    </div>
+                </v-col>
+                
+                <v-col
+                    cols="12"
+                    sm="6"
+                    >
+                    <v-text-field
+                        prepend-inner-icon="mdi-magnify"
+                        v-model="search"
+                        label="search"
+                        variant="outlined"
+                        clearable
+                    ></v-text-field>
+                </v-col>
+            </v-row>
+        </v-container>
+    </transition>
+    <transition 
+            appear
+            @before-enter="beforeEnter"
+            @enter="enter"
+    >
+        <v-container
+            
+            class="grey spacing-playground mb-6 pa-6 app__flex"
+        >
+        
+            <div
+                class="app__flex" 
+            >
+                <div
+                    v-for="(contact, index) in usersContacts"
+                    :key="contact.userId"
+                    class="display-flex__child"
+                >
+                    <Card class="app__card" :contact="contact" :to="{name: 'Contact.details', params: { id: contact.id } }"  />                      
+                </div>
+            </div>                        
+        </v-container>
+    </transition> 
+</template>
 
 <script lang="ts" >
   
@@ -78,7 +79,7 @@
     name: 'Home',
     props:
         [
-            //'id',
+            
         ],
     methods: {
     },
@@ -94,8 +95,8 @@
 
 
     watch(search, () => {
-        console.log("filtered : ", filtered.value)
-        console.log("contacts : ", contacts.value)
+        //console.log("filtered : ", filtered.value)
+        //console.log("contacts : ", contacts.value)
     })
 
     const beforeEnterSearchField = (el:any) => {
@@ -154,6 +155,10 @@
     flex: 1 0 21%; 
     padding: 10px;
     margin-bottom: 30px;;
+}
+
+.app__card {
+    max-width: 200px;;
 }
 
 </style>

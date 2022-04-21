@@ -8,7 +8,7 @@
                 <v-btn 
                 white
                 left
-                to="/"
+                :to="{name: 'Home'}"
                 variant="text"
                 class="ma-2"
                 >
@@ -18,6 +18,7 @@
                         <v-icon
                             dark
                             left
+                            style="margin-right: 10px;"
                         >
                         mdi-arrow-left
                         </v-icon>
