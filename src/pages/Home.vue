@@ -60,7 +60,12 @@
                     :key="contact.userId"
                     class="display-flex__child"
                 >
-                    <Card class="app__card" :contact="contact" :to="{name: 'Contact.details', params: { id: contact.id } }"  />                      
+                    <v-hover
+                        v-slot="{ isHovering, props }"
+                        open-delay="200"
+                    >
+                        <Card :elevation="isHovering ? 12 : 2" v-bind="props" class="app__card" :contact="contact" :to="{name: 'Contact.details', params: { id: contact.id } }"  />   
+                    </v-hover>                   
                 </div>
             </div>                        
         </v-container>
@@ -105,7 +110,7 @@
     }
     const enterSearchField = (el:any, done:any) => {
       gsap.to(el, {
-        duration: 1,
+        duration: 1.5,
         y: 0,
         opacity: 1,
         ease: 'bounce.out',
@@ -158,8 +163,8 @@
 }
 
 .app__card {
-    max-width: 200px;;
-}
+    width: 250px;
+} 
 
 </style>
   
