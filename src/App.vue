@@ -6,12 +6,12 @@
             <v-spacer></v-spacer>
       </v-col>
       <div class="app__body" style="top: 25%;padding-top: 40px;">
-          <router-view v-slot="{ Component }"  :key="$route.path"  >
+          <!-- <router-view v-slot="{ Component }"  :key="$route.path"  >
             <transition name="route" mode="out-in">
               <component :is="Component" ></component>
             </transition>
-          </router-view>
-        <!-- <router-view :key="$route.path" /> -->
+          </router-view> -->
+        <router-view :key="$route.path" />
       </div> 
     </v-main>
   </v-app>
